@@ -152,8 +152,16 @@ app.put('/api/deliveries/:tracking/status', (req, res) => {
     });
 });
 
-// ---------- Start Server ----------
+// -------- Start Server --------
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(` Server: http://localhost:${PORT}`);
-});
+
+// This IF statement ensures the server only listens when you run `node server.js`
+// It will NOT run when Jest imports the file for testing.
+if (require.main === module) {
+    app.listen(PORT, '0.0.0.0', () => {
+        console.log(`Server: http://localhost:${PORT}`);
+    });
+}
+
+// This is CRITICAL: it exports the app so supertest can test it
+module.exports = app;
