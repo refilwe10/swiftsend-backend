@@ -1,32 +1,26 @@
 # SwiftSend Backend API
 
-Node.js + Express backend for the SwiftSend Courier Management System.
+The Node.js and Express REST API backend for the SwiftSend Courier Management System. It handles authentication, delivery management, and database interactions.
 
-## Features
+##  Technologies Used
+*   **Runtime:** Node.js
+*   **Framework:** Express.js
+*   **Database:** MySQL (mysql2)
+*   **Security:** bcryptjs (Password Hashing), CORS
+*   **Testing:** Jest, Supertest
+*   **CI/CD:** GitHub Actions
 
-- REST API for mobile app and website
-- User registration & login with bcrypt password encryption
-- Role-based authentication (Customer / Driver)
-- Delivery management endpoints
-- Status update endpoints
-- CORS enabled for cross-platform access
+##  API Endpoints
+*   `POST /api/register` - Register a new user (Customer/Driver)
+*   `POST /api/login` - Authenticate user and return role
+*   `GET /api/deliveries` - Get all deliveries
+*   `PUT /api/deliveries/:tracking/status` - Update delivery status
+*   `GET /api/drivers/:id/deliveries` - Get deliveries for a specific driver
+*   `GET /api/customers/:id/deliveries` - Get deliveries for a specific customer
 
-## API Endpoints
-
-| Endpoint | Method | Purpose |
-|----------|--------|---------|
-| `/` | GET | Health check |
-| `/api/customers` | GET | Get all customers |
-| `/api/register` | POST | Register new user |
-| `/api/login` | POST | Login |
-| `/api/deliveries` | GET/POST | Manage deliveries |
-| `/api/drivers/:id/deliveries` | GET | Driver's deliveries |
-| `/api/customers/:id/deliveries` | GET | Customer's parcels |
-| `/api/deliveries/:tracking/status` | PUT | Update status |
-
-## Setup
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/refilwe10/swiftsend-backend.git
-   cd swiftsend-backend
+##  Automated Testing
+This project uses **Jest** and **Supertest** for API integration testing. 
+To run the tests locally:
+```bash
+npm install
+npm test
